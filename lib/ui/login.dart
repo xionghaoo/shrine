@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shrine/test_animation.dart';
 import 'package:shrine/theme/colors.dart';
 import 'package:shrine/ui/home.dart';
 
@@ -67,6 +68,16 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 )
               ],
+            ),
+            // 测试页面
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: RaisedButton(
+                child: Text('测试'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => TestAnimPage()));
+                },
+              ),
             )
           ],
         )

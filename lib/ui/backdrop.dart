@@ -41,6 +41,7 @@ class _BackdropState extends State<Backdrop> with SingleTickerProviderStateMixin
   void _toggleBackdropLayerVisibility() {
     print('_frontLayerVisible: $_frontLayerVisible');
     _animationController.fling(
+      // If velocity is positive, the animation will complete, otherwise it will dismiss.
       velocity: _frontLayerVisible ? -_kFlingVelocity : _kFlingVelocity
     );
   }
@@ -165,6 +166,8 @@ class _FrontLayer extends StatelessWidget {
   }
 }
 
+
+
 class _BackdropTitle extends AnimatedWidget {
 
   final Function onPress;
@@ -200,6 +203,7 @@ class _BackdropTitle extends AnimatedWidget {
                 child: ImageIcon(AssetImage('assets/slanted_menu.png')),
               ),
               FractionalTranslation(
+                // Tween Transition没有应用到具体的属性上，通过FractionalTranslation包装，应用到ImageIcon对象
                 translation: Tween<Offset>(
                   begin: Offset.zero,
                   end: Offset(1.0, 0.0)
@@ -217,6 +221,7 @@ class _BackdropTitle extends AnimatedWidget {
                 curve: Interval(0.5, 1.0)
               ).value,
               child: FractionalTranslation(
+                // 消失时向右滑动，出现反之
                 translation: Tween<Offset>(
                   begin: Offset.zero,
                   end: Offset(0.5, 0.0)
@@ -230,6 +235,7 @@ class _BackdropTitle extends AnimatedWidget {
                 curve: Interval(0.5, 1.0)
               ).value,
               child: FractionalTranslation(
+                // 出现时向右滑动，出现反之
                 translation: Tween<Offset>(
                   begin: Offset(-0.25, 0.0),
                   end: Offset.zero
